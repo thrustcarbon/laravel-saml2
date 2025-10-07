@@ -69,7 +69,7 @@ class Saml2User
     {
         return $this->auth->getAttribute($name);
     }
-    
+
     /**
      * The attributes retrieved from assertion processed this request.
      *
@@ -101,7 +101,7 @@ class Saml2User
 
         $url = app('Illuminate\Contracts\Routing\UrlGenerator');
 
-        if ($relayState && $url->full() != $relayState) {
+        if (filled($relayState) && $url->full() != $relayState && $relayState != 'undefined') {
             return $relayState;
         }
 
